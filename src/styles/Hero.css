@@ -31,3 +31,44 @@
   padding: 20px;
 }
 
+/* Button Container */
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+/* Download Button */
+/* Download Button */
+.download-btn {
+  display: inline-flex; /* Ensures the button and icon align properly */
+  align-items: center;
+  margin-top: 50px;
+  padding: 15px 24px;
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(90deg, #2563eb, #9333ea);
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  text-decoration: none; /* Removes underline */
+  transition: all 0.3s ease-in-out;
+  white-space: nowrap; /* Prevents text wrapping */
+}
+
+/* Icon inside Button */
+.download-btn .icon {
+  margin-right: 10px;
+}
+
+/* Hover & Focus Effects */
+.download-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.download-btn:focus {
+  outline: none;
+}
