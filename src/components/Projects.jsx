@@ -7,7 +7,7 @@ export default function Projects() {
       title: 'Portfolio Website',
       description: 'A personal website built with React and Tailwind.',
       image: '/src/assets/portfolio1.png',
-      link: '#'
+      link: 'https://kaushikranjan-portfolio.onrender.com/'
     },
     {
       title: 'Task Manager App',

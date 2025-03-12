@@ -1,31 +1,75 @@
-import React from "react";
+import React, { useState } from "react";
+import emailjs from "@emailjs/browser";
 import "../styles/Contact.css";
-import { useEffect } from "react";
 
 export default function Contact() {
-  useEffect(() => {
-    const links = document.querySelectorAll(".social-icons a");
-  
-    const stopPropagationHandler = (e) => {
-      e.stopPropagation();
-    };
-  
-    links.forEach((link) => {
-      link.addEventListener("click", stopPropagationHandler);
-    });
-  
-    return () => {
-      links.forEach((link) => {
-        link.removeEventListener("click", stopPropagationHandler);
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setSuccessMessage("");
+    setErrorMessage("");
+
+    const serviceID = "service_wsw4j5e"; // Your EmailJS Service ID
+    const templateID = "template_d4f109b"; // Email to yourself
+    const autoReplyTemplateID = "template_ngta1ac"; // Auto-reply template
+    const publicKey = "RqOBIFIu2ZKSSnQLB"; // Your EmailJS User ID
+
+    // Send message to yourself
+    emailjs.send(serviceID, templateID, formData, publicKey)
+      .then((response) => {
+        console.log("Message sent to owner:", response.status, response.text);
+
+        // Send Auto-Reply to User
+        emailjs.send(serviceID, autoReplyTemplateID, formData, publicKey)
+          .then((replyResponse) => {
+            console.log("Auto-reply sent:", replyResponse.status, replyResponse.text);
+            setIsLoading(false);
+            setSuccessMessage("Message sent successfully! Check your email for confirmation.");
+            setFormData({
+              firstName: "",
+              lastName: "",
+              email: "",
+              phone: "",
+              message: "",
+            });
+          })
+          .catch((error) => {
+            console.error("Error sending auto-reply:", error);
+            setIsLoading(false);
+            setErrorMessage("Message sent but failed to send auto-reply.");
+          });
+
+      })
+      .catch((error) => {
+        console.error("Error sending message:", error);
+        setIsLoading(false);
+        setErrorMessage("Failed to send message. Try again later.");
       });
-    };
-  }, [])
+  };
+
   return (
     <section id="contact" className="contact-page">
       <div className="contact-container">
         {/* Left Side: Contact Form */}
         <div className="contact-left">
-          <form className="contact-form">
+          <h2>Contact Me</h2>
+          <form className="contact-form" onSubmit={sendEmail}>
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="firstName">FIRST NAME</label>
@@ -34,6 +78,9 @@ export default function Contact() {
                   id="firstName"
                   name="firstName"
                   placeholder="Enter your first name"
+                  value={formData.firstName}
+                  onChange={handleChange}
+                  required
                 />
               </div>
               <div className="form-group">
@@ -43,6 +90,9 @@ export default function Contact() {
                   id="lastName"
                   name="lastName"
                   placeholder="Enter your last name"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                  required
                 />
               </div>
             </div>
@@ -55,6 +105,9 @@ export default function Contact() {
                   id="email"
                   name="email"
                   placeholder="Enter your email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
                 />
               </div>
               <div className="form-group">
@@ -64,6 +117,8 @@ export default function Contact() {
                   id="phone"
                   name="phone"
                   placeholder="Enter your phone number"
+                  value={formData.phone}
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -75,18 +130,25 @@ export default function Contact() {
                 name="message"
                 rows="4"
                 placeholder="Please enter query..."
+                value={formData.message}
+                onChange={handleChange}
+                required
               ></textarea>
             </div>
 
-            <button type="submit" className="btn-submit">
-              Submit
+            <button type="submit" className="btn-submit" disabled={isLoading}>
+              {isLoading ? "Sending..." : "Submit"}
             </button>
+
+            {/* Display Success or Error Message */}
+            {successMessage && <p className="success-message">{successMessage}</p>}
+            {errorMessage && <p className="error-message">{errorMessage}</p>}
           </form>
         </div>
 
         {/* Right Side: Contact Info */}
         <div className="contact-right">
-          <h2>Contact me</h2>
+          <h2>Reach Out</h2>
 
           <div className="contact-info">
             <div className="info-item">
