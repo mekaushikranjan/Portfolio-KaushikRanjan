@@ -3,13 +3,10 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  base: './',  // ✅ Ensures assets are correctly linked
-  build: {
-    outDir: 'dist',
-  },
   server: {
-    port: process.env.PORT || 5173,
+    port: process.env.PORT || 5173, // Ensure correct port usage
     host: '0.0.0.0',
-    allowedHosts: ['kaushikranjan-portfolio.onrender.com'],
+    strictPort: true, // Ensures it only runs on this port
+    allowedHosts: ['kaushikranjan-portfolio.onrender.com'], // ✅ Add your Render domain here
   }
 });
