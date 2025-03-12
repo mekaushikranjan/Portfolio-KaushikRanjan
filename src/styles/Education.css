@@ -1,0 +1,148 @@
+/* Full screen section with dark background */
+.education-section {
+  display: flex;
+  padding-top: 100px;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 80px);
+  background-color: transparent;
+  color: white;
+}
+
+/* Container for absolute positioning */
+.education-container {
+  position: relative;
+  width: 80%;
+  height: 400px;
+}
+
+/* Vertical divider */
+.divider {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 100%;
+  background-color: #ffffff;
+  opacity: 0.8;
+  z-index: 100;
+}
+
+/* Box Styling */
+.edu-box {
+  position: absolute;
+  width: 45%;
+  background-color: black;
+  padding: 1rem;
+  border-radius: 8px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  z-index: 2;
+}
+
+.edu-box:hover {
+  transform: scale(1.05);
+  background-color: #30405a;
+}
+
+/* Left Box */
+.left-box {
+  top: 2%;
+  left: 0;
+}
+
+/* Right Box */
+.right-box {
+  bottom: 2%;
+  right: 0;
+}
+
+/* Connectors */
+.connector {
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  background-color: #ffffff;
+  opacity: 0.8;
+  z-index: 50;
+  transition: width 0.3s ease;
+}
+
+/* Left connector */
+.left-box .connector {
+  top: 50%;
+  right: -30px;
+}
+
+/* Right connector */
+.right-box .connector {
+  top: 50%;
+  left: -30px;
+}
+
+/* ✅ Hover effect: Shrink connector width when box is hovered */
+.left-box:hover .connector {
+  display: none;
+}
+
+.right-box:hover .connector {
+  display: none;
+}
+
+/* Text inside boxes */
+.edu-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.edu-detail,
+.edu-university {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.edu-courses {
+  list-style: none;
+  padding: 0;
+}
+
+.edu-courses p {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ✅ Responsive Design */
+@media (max-width: 1024px) {
+  .education-container {
+      width: 90%;
+  }
+
+  .edu-box {
+      width: 48%;
+  }
+}
+
+@media (max-width: 768px) {
+  .education-container {
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .divider {
+      display: none;
+  }
+
+  .edu-box {
+      width: 90%;
+      position: static;
+      margin-bottom: 1rem;
+      text-align: center;
+  }
+
+  .connector {
+      display: none;
+  }
+}

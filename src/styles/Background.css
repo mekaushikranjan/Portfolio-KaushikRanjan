@@ -1,0 +1,138 @@
+/* Full-screen background */
+.background-container {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: -10;
+  background: linear-gradient(135deg, #0d1b2a, #1b263b, #415a77);
+  overflow: hidden;
+}
+
+/* Subtle moving grid */
+.grid-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: 40px 40px;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  animation: gridMove 8s infinite linear;
+}
+
+/* Floating dots effect */
+.floating-dots {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: rgba(0, 255, 255, 0.6);
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
+  animation: floatDots 6s infinite ease-in-out alternate;
+}
+
+/* Additional dots for more effect */
+.dot:nth-child(1) { top: 10%; left: 20%; animation-duration: 5s; }
+.dot:nth-child(2) { top: 40%; left: 70%; animation-duration: 6s; }
+.dot:nth-child(3) { top: 70%; left: 30%; animation-duration: 7s; }
+.dot:nth-child(4) { top: 20%; left: 80%; animation-duration: 8s; }
+.dot:nth-child(5) { top: 50%; left: 50%; animation-duration: 9s; }
+.dot:nth-child(6) { top: 15%; left: 60%; animation-duration: 4s; }
+.dot:nth-child(7) { top: 65%; left: 20%; animation-duration: 5.5s; }
+.dot:nth-child(8) { top: 85%; left: 80%; animation-duration: 7.5s; }
+.dot:nth-child(9) { top: 30%; left: 90%; animation-duration: 6.5s; }
+.dot:nth-child(10) { top: 90%; left: 10%; animation-duration: 8.5s; }
+
+/* Grid movement animation */
+@keyframes gridMove {
+  0% { background-position: 0 0; }
+  100% { background-position: 40px 40px; }
+}
+
+/* Floating dots animation */
+@keyframes floatDots {
+  0% { transform: translateY(0) scale(1); opacity: 0.6; }
+  100% { transform: translateY(-20px) scale(1.1); opacity: 1; }
+}
+
+/* Full-Screen Dark Background */
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  min-height: 100vh;
+  background: radial-gradient(circle at center, #0a192f, #020c1b);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Animated Glowing Particles */
+.background-effect::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(0, 255, 170, 0.2) 10%, rgba(0, 255, 170, 0) 60%);
+  filter: blur(60px);
+  animation: glow 3s infinite alternate ease-in-out;
+}
+
+/* Floating particle dots */
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background-color: cyan;
+  border-radius: 50%;
+  animation: floatParticles 2s infinite ease-in-out alternate;
+  opacity: 0.8;
+}
+
+/* Particle animation */
+@keyframes floatParticles {
+  0% { transform: translateY(0) scale(1); opacity: 0.8; }
+  100% { transform: translateY(-20px) scale(1.2); opacity: 0.4; }
+}
+
+/* Dynamic Glow Animation */
+@keyframes glow {
+  0% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+/* Prevent Horizontal Scroll & Enable Vertical Scroll */
+html, body {
+  overflow-y: scroll; /* Keeps scrolling enabled */
+  scrollbar-width: none; /* Hides scrollbar in Firefox */
+}
+
+body::-webkit-scrollbar {
+  display: none; /* Hides scrollbar in Chrome, Safari, and Edge */
+}
+
+/* Ensure content can scroll */
+#root {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .dot {
+      width: 6px;
+      height: 6px;
+      box-shadow: 0 0 6px rgba(0, 255, 255, 0.7);
+  }
+}

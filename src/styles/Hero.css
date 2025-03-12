@@ -1,0 +1,33 @@
+/* Ensure the hero section appears below the fixed navbar */
+.hero {
+  position: relative;
+  min-height: calc(100vh - 80px); /* Full viewport height minus navbar height */
+  padding-top: 80px; /* Offset for fixed navbar */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: transparent; /* Dark background */
+  color: white;
+  text-align: center;
+}
+
+/* Full-screen background container */
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Ensure hero content appears above the background */
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px; /* Prevent text from being too wide on larger screens */
+  padding: 20px;
+}
+

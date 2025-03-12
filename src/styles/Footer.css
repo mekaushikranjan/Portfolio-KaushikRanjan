@@ -1,0 +1,15 @@
+/* Footer Styling */
+.footer {
+    background-color: black; /* Dark gray background */
+    color: white;
+    text-align: center;
+    padding: 1.1rem;
+    width: 100vw; /* Full width without overflow */
+    position: relative; /* Keeps it attached to the contact section */
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    backdrop-filter: blur(4px); /* Subtle blur effect */
+    box-shadow: 0 8px 8px rgba(248, 246, 246, 0.8);
+}

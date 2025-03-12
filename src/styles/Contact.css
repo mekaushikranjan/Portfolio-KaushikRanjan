@@ -1,0 +1,209 @@
+/* Overall container styling */
+.contact-page {
+  width: 100%;
+  min-height: 100vh;
+  background-color: transparent; /* Dark background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem;
+  box-sizing: border-box;
+}
+
+/* Contact container: Two-column layout */
+.contact-container {
+  width: 100%;
+  max-width: 1400px;
+  display: flex;
+  flex-wrap: wrap; /* ✅ Allows stacking on smaller screens */
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Left column: Form */
+.contact-left {
+  flex: 1;
+  padding: 4rem;
+  border-right: 1px solid #ccc; /* Thin vertical line */
+}
+
+/* Contact Form */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Form rows for side-by-side inputs */
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Each input container */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+/* Input fields */
+.form-group input,
+.form-group textarea {
+  padding: 0.7rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  color: #333;
+  width: 100%;
+}
+
+/* Placeholder styling */
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #999;
+}
+
+/* Submit button */
+.btn-submit {
+  display: block;
+  margin: 0 auto;
+  width: 140px;
+  padding: 0.8rem;
+  background-color: #2f4f4f; /* Dark greenish color */
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-submit:hover {
+  background-color: #264a4a;
+  transform: scale(1.05);
+}
+
+/* Right column: Contact Info */
+.contact-right {
+  flex: 1;
+  padding: 3rem;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.contact-right h2 {
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  color: black;
+}
+
+.contact-text {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+  color: #555;
+}
+
+/* Contact Info Items */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.info-icon {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
+/* Social icons row */
+.social-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem; /* Space between icons */
+  margin-top: 3rem;
+  position: relative;
+  z-index: 10;
+}
+
+.social-icons a {
+  display: inline-block;
+  position: relative;
+  z-index: 11;
+  transition: transform 0.3s ease;
+}
+
+.social-icons a:hover {
+  transform: scale(1.15);
+}
+
+.social-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+/* 🔹 RESPONSIVE DESIGN */
+
+/* Medium Screens (Tablets & Smaller Laptops) */
+@media (max-width: 1024px) {
+  .contact-container {
+    flex-direction: column; /* ✅ Stack form and info section */
+  }
+  .contact-left {
+    border-right: none; /* Remove separator */
+    padding: 3rem;
+  }
+  .contact-right {
+    padding: 2rem;
+    text-align: center; /* ✅ Center text on smaller screens */
+  }
+  .social-icons {
+    margin-top: 2rem;
+  }
+}
+
+/* Small Screens (Phones) */
+@media (max-width: 768px) {
+  .contact-page {
+    padding: 1.5rem; /* Reduce padding */
+  }
+  .contact-left,
+  .contact-right {
+    padding: 2rem;
+  }
+  .form-row {
+    flex-direction: column; /* ✅ Stack inputs */
+  }
+  .contact-text {
+    font-size: 0.9rem;
+  }
+  .btn-submit {
+    width: 100%; /* ✅ Full-width button */
+  }
+  .social-icons {
+    gap: 1rem;
+  }
+}

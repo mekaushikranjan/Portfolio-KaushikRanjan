@@ -1,0 +1,64 @@
+/* About.css */
+
+/* Main container for the About section */
+.about-container {
+    display: flex;
+    padding: 80px;
+    flex-direction: column;
+    min-height: calc(100vh - 60px); /* Full screen minus navbar height */
+    background-color: transparent;      /* Equivalent to Tailwind's bg-gray-700 */
+    color: white;
+  }
+  
+  /* Padding for both text and photo sections */
+  .about-text,
+  .about-photo {
+    padding: 1rem;
+  }
+  
+  /* For larger screens, display content side by side */
+  @media (min-width: 768px) {
+    .about-container {
+      flex-direction: row;
+    }
+    .about-text,
+    .about-photo {
+      flex: 1;
+      padding: 2rem;
+    }
+  }
+  
+  /* Left side: Text details */
+  .about-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .about-text h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .about-text p {
+    font-size: 1.125rem;
+    line-height: 1.5;
+  }
+  
+  /* Right side: Photo styling */
+  .about-photo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .about-photo img {
+    width: 60%;
+    height: 60%;
+    object-fit: cover;
+    border-radius: 10px; /* Optional: adds rounded corners */
+    border: 4px solid white; /* White border */
+}
+
+  
