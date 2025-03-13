@@ -2,7 +2,7 @@
 .contact-page {
   width: 100%;
   min-height: 100vh;
-  background-color: transparent; /* Dark background */
+  background-color: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -65,7 +65,7 @@
   border-radius: 6px;
   outline: none;
   color: #333;
-  width: 100%;
+  width: 90%;
 }
 
 /* Placeholder styling */
@@ -80,7 +80,7 @@
   margin: 0 auto;
   width: 140px;
   padding: 0.8rem;
-  background-color: #2f4f4f; /* Dark greenish color */
+  background-color: #2f4f4f;
   color: #fff;
   border: none;
   border-radius: 6px;
@@ -142,7 +142,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2rem; /* Space between icons */
+  gap: 2rem;
   margin-top: 3rem;
   position: relative;
   z-index: 10;
@@ -165,30 +165,46 @@
   object-fit: contain;
 }
 
-/* 🔹 RESPONSIVE DESIGN */
+/* ✅ RESPONSIVE DESIGN */
 
 /* Medium Screens (Tablets & Smaller Laptops) */
 @media (max-width: 1024px) {
   .contact-container {
-    flex-direction: column; /* ✅ Stack form and info section */
+    flex-direction: column;
   }
   .contact-left {
-    border-right: none; /* Remove separator */
+    border-right: none;
     padding: 3rem;
   }
   .contact-right {
     padding: 2rem;
-    text-align: center; /* ✅ Center text on smaller screens */
+    text-align: center;
   }
   .social-icons {
     margin-top: 2rem;
   }
 }
 
+/* Tablets (iPads) - Ensuring proper layout */
+@media (max-width: 860px) {
+  .contact-left {
+    padding: 2.5rem;
+  }
+  .contact-right {
+    padding: 2rem;
+  }
+  .contact-text {
+    font-size: 0.95rem;
+  }
+  .btn-submit {
+    width: 160px;
+  }
+}
+
 /* Small Screens (Phones) */
 @media (max-width: 768px) {
   .contact-page {
-    padding: 1.5rem; /* Reduce padding */
+    padding: 1.5rem;
   }
   .contact-left,
   .contact-right {
@@ -205,5 +221,45 @@
   }
   .social-icons {
     gap: 1rem;
+  }
+}
+
+/* Small Phones & Compact Screens */
+@media (max-width: 480px) {
+  .contact-page {
+    padding: 1rem;
+  }
+  .contact-left,
+  .contact-right {
+    padding: 1.5rem;
+  }
+  .contact-text {
+    font-size: 0.85rem;
+  }
+  .btn-submit {
+    font-size: 1rem;
+  }
+  .social-icons {
+    gap: 0.8rem;
+  }
+}
+
+/* Ultra-Wide Screens */
+@media (min-width: 1600px) {
+  .contact-container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .contact-left {
+    padding: 5rem;
+  }
+  .contact-right {
+    padding: 4rem;
+  }
+  .contact-text {
+    font-size: 1.25rem;
+  }
+  .btn-submit {
+    width: 180px;
   }
 }

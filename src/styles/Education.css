@@ -6,20 +6,25 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 5rem;
+  padding: 5rem 2rem;
 }
-.edu-title1{
+
+/* Title */
+.edu-title1 {
   font-size: 3rem;
   font-weight: bold;
   text-align: center;
   margin-bottom: 2rem;
 }
 
-/* Container for absolute positioning */
+/* Main Container */
 .education-container {
   position: relative;
   width: 80%;
-  height: 400px;
+  max-width: 1200px;
+  min-height: 400px;
+  display: flex;
+  justify-content: center;
 }
 
 /* Vertical divider */
@@ -35,16 +40,16 @@
   z-index: 100;
 }
 
-
 /* Box Styling */
 .edu-box {
   position: absolute;
   width: 45%;
   background-color: black;
-  padding: .8rem;
+  padding: 1rem;
   border-radius: 8px;
   transition: transform 0.3s ease, background-color 0.3s ease;
   z-index: 2;
+  box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
 }
 
 .edu-box:hover {
@@ -54,13 +59,13 @@
 
 /* Left Box */
 .left-box {
-  top: 2%;
+  top: 5%;
   left: 0;
 }
 
 /* Right Box */
 .right-box {
-  bottom: 2%;
+  bottom: 5%;
   right: 0;
 }
 
@@ -87,11 +92,8 @@
   left: -30px;
 }
 
-/* ✅ Hover effect: Shrink connector width when box is hovered */
-.left-box:hover .connector {
-  display: none;
-}
-
+/* Hide connectors on hover */
+.left-box:hover .connector,
 .right-box:hover .connector {
   display: none;
 }
@@ -119,37 +121,116 @@
   margin-bottom: 0.5rem;
 }
 
-/* ✅ Responsive Design */
+/* ✅ iPads (Portrait & Landscape) */
 @media (max-width: 1024px) {
   .education-container {
-      width: 90%;
-  }
-
-  .edu-box {
-      width: 48%;
-  }
-}
-
-@media (max-width: 768px) {
-  .education-container {
-      height: auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .divider {
-      display: none;
+    display: none;
   }
 
   .edu-box {
-      width: 90%;
-      position: static;
-      margin-bottom: 1rem;
-      text-align: center;
+    width: 80%;
+    position: static;
+    margin-bottom: 2rem;
+    text-align: center;
   }
 
   .connector {
-      display: none;
+    display: none;
+  }
+}
+
+/* ✅ Tablets & Large Phones (Portrait) */
+@media (max-width: 768px) {
+  .education-container {
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .edu-box {
+    width: 85%;
+    position: static;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .connector {
+    display: none;
+  }
+}
+
+/* ✅ Mobile Phones & Small Devices */
+@media (max-width: 480px) {
+  .education-section {
+    padding: 3rem 1rem;
+  }
+
+  .edu-title1 {
+    margin-top: 3rem;
+    font-size: 2rem;
+  }
+
+  .education-container {
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .edu-box {
+    width: 100%;
+    position: static;
+    margin-bottom: 2rem;
+    padding: 0.8rem;
+    text-align: center;
+  }
+
+  .edu-title {
+    font-size: 1.5rem;
+  }
+
+  .edu-detail,
+  .edu-university {
+    font-size: 0.9rem;
+  }
+
+  .edu-courses p {
+    font-size: 1rem;
+  }
+
+  .connector {
+    display: none;
+  }
+}
+
+/* ✅ Ultra-Wide Screens */
+@media (min-width: 1600px) {
+  .education-container {
+    max-width: 1400px;
+  }
+
+  .edu-box {
+    width: 40%;
+    padding: 1.2rem;
+  }
+
+  .edu-title1 {
+    font-size: 3.5rem;
   }
 }

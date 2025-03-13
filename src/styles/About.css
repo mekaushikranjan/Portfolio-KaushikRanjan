@@ -2,63 +2,148 @@
 
 /* Main container for the About section */
 .about-container {
-    display: flex;
-    padding: 80px;
-    flex-direction: column;
-    min-height: calc(100vh - 60px); /* Full screen minus navbar height */
-    background-color: transparent;      /* Equivalent to Tailwind's bg-gray-700 */
-    color: white;
-  }
-  
-  /* Padding for both text and photo sections */
-  .about-text,
-  .about-photo {
-    padding: 1rem;
-  }
-  
-  /* For larger screens, display content side by side */
-  @media (min-width: 768px) {
-    .about-container {
-      flex-direction: row;
-    }
-    .about-text,
-    .about-photo {
-      flex: 1;
-      padding: 2rem;
-    }
-  }
-  
-  /* Left side: Text details */
-  .about-text {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  
-  .about-text h2 {
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-  }
-  
-  .about-text p {
-    font-size: 1.125rem;
-    line-height: 1.5;
-  }
-  
-  /* Right side: Photo styling */
-  .about-photo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .about-photo img {
-    width: 60%;
-    height: 60%;
-    object-fit: cover;
-    border-radius: 10px; /* Optional: adds rounded corners */
-    border: 4px solid white; /* White border */
+  display: flex;
+  padding: 80px;
+  flex-direction: column;
+  min-height: calc(100vh - 60px); /* Full screen minus navbar height */
+  background-color: transparent;
+  color: white;
 }
 
+/* Padding for both text and photo sections */
+.about-text,
+.about-photo {
+  padding: 1rem;
+}
+
+/* For larger screens, display content side by side */
+@media (min-width: 768px) {
+  .about-container {
+      flex-direction: row;
+      align-items: center;
+  }
   
+  .about-text,
+  .about-photo {
+      flex: 1;
+      padding: 2rem;
+  }
+}
+
+/* Left side: Text details */
+.about-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.about-text h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.about-text p {
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+/* Right side: Photo styling */
+.about-photo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-photo img {
+  width: 60%;
+  height: auto;
+  max-width: 350px; /* Ensures the image doesn't get too large on desktops */
+  object-fit: cover;
+  border-radius: 10px; /* Optional: adds rounded corners */
+  border: 4px solid white; /* White border */
+}
+
+/* ✅ Responsive Adjustments for Different Screen Sizes */
+
+/* Tablets & iPads (Portrait) */
+@media (max-width: 1024px) {
+  .about-container {
+      flex-direction: column;
+      text-align: center;
+  }
+
+  .about-text h2 {
+      font-size: 2rem;
+  }
+
+  .about-text p {
+      font-size: 1rem;
+  }
+
+  .about-photo img {
+      width: 70%;
+  }
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+  .about-container {
+      padding: 50px 20px;
+  }
+
+  .about-text {
+      text-align: center;
+  }
+
+  .about-text h2 {
+      font-size: 1.8rem;
+  }
+
+  .about-text p {
+      font-size: 1rem;
+  }
+
+  .about-photo img {
+      width: 80%;
+  }
+}
+
+/* Small Phones & Compact Screens */
+@media (max-width: 480px) {
+  .about-container {
+      padding: 40px 15px;
+  }
+
+  .about-text h2 {
+      font-size: 1.6rem;
+  }
+
+  .about-text p {
+      font-size: 0.95rem;
+  }
+
+  .about-photo img {
+      width: 90%;
+  }
+}
+
+/* Ultra-Wide Screens */
+@media (min-width: 1600px) {
+  .about-container {
+      max-width: 1400px;
+      margin: 0 auto;
+  }
+
+  .about-text h2 {
+      font-size: 3rem;
+  }
+
+  .about-text p {
+      font-size: 1.25rem;
+  }
+
+  .about-photo img {
+      max-width: 400px;
+  }
+}
