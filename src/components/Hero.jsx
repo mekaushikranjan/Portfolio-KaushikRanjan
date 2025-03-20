@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/Hero.css"; // Ensure Hero styles are imported
 import { FaDownload } from "react-icons/fa"; // Importing download icon
-
+import resumePDF from "../assets/resumekaushikranjan.pdf";
 export default function Hero() {
   return (
     <section className="hero relative flex flex-col items-center justify-center text-center min-h-screen">
@@ -18,7 +18,7 @@ export default function Hero() {
         {/* Buttons Container */}
         <div className="button-container">
           {/* Download Resume Button */}
-          <a href="/resume.pdf" download="Kaushik_Ranjan_Resume.pdf">
+          <a href={resumePDF} download="Kaushik_Ranjan_Resume.pdf">
             <button className="download-btn">
               <FaDownload className="icon" /> Download Resume
             </button>

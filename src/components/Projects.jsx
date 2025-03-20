@@ -10,23 +10,23 @@ export default function Projects() {
       link: 'https://kaushikranjan-portfolio.onrender.com/'
     },
     {
-      title: 'Task Manager App',
-      description: 'A React-based gamified task manager.',
-      image: '',
+      title: 'Smart City Portal',
+      description: 'A React-based gamified Complaint portal.',
+      image: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
       link: '#'
     },
   
     {
-      title: 'E-commerce Platform',
-      description: 'A full-stack e-commerce application.',
-      image: '',
-      link: '#'
+      title: '',
+      description: '.',
+      image: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
+      link: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
     },
     {
-      title: 'Chat Application',
-      description: 'A real-time chat app using WebSockets.',
-      image: '',
-      link: '#'
+      title: '',
+      description: '.',
+      image: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
+      link: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
     }
   ];
 

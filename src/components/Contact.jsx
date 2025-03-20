@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import emailjs from "@emailjs/browser";
 import "../styles/Contact.css";
 
 export default function Contact() {
@@ -18,55 +17,43 @@ export default function Contact() {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
-  const sendEmail = (e) => {
+  const sendEmail = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     setSuccessMessage("");
     setErrorMessage("");
-
-    const serviceID = "service_wsw4j5e"; // Your EmailJS Service ID
-    const templateID = "template_d4f109b"; // Email to yourself
-    const autoReplyTemplateID = "template_ngta1ac"; // Auto-reply template
-    const publicKey = "RqOBIFIu2ZKSSnQLB"; // Your EmailJS User ID
-
-    // Send message to yourself
-    emailjs.send(serviceID, templateID, formData, publicKey)
-      .then((response) => {
-        console.log("Message sent to owner:", response.status, response.text);
-
-        // Send Auto-Reply to User
-        emailjs.send(serviceID, autoReplyTemplateID, formData, publicKey)
-          .then((replyResponse) => {
-            console.log("Auto-reply sent:", replyResponse.status, replyResponse.text);
-            setIsLoading(false);
-            setSuccessMessage("Message sent successfully! Check your email for confirmation.");
-            setFormData({
-              firstName: "",
-              lastName: "",
-              email: "",
-              phone: "",
-              message: "",
-            });
-          })
-          .catch((error) => {
-            console.error("Error sending auto-reply:", error);
-            setIsLoading(false);
-            setErrorMessage("Message sent but failed to send auto-reply.");
-          });
-
-      })
-      .catch((error) => {
-        console.error("Error sending message:", error);
-        setIsLoading(false);
-        setErrorMessage("Failed to send message. Try again later.");
+  
+    try {
+      const response = await fetch("/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
       });
+  
+      const data = await response.json();
+      if (response.ok) {
+        setSuccessMessage(data.message);
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          message: "",
+        });
+      } else {
+        setErrorMessage(data.message);
+      }
+    } catch (error) {
+      console.error("Error sending message:", error);
+      setErrorMessage("Failed to send message. Please try again later.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <section id="contact" className="contact-page">
       <div className="contact-container">
-        {/* Left Side: Contact Form */}
         <div className="contact-left">
           <h2>Contact Me</h2>
           <form className="contact-form" onSubmit={sendEmail}>
@@ -140,7 +127,6 @@ export default function Contact() {
               {isLoading ? "Sending..." : "Submit"}
             </button>
 
-            {/* Display Success or Error Message */}
             {successMessage && <p className="success-message">{successMessage}</p>}
             {errorMessage && <p className="error-message">{errorMessage}</p>}
           </form>

@@ -6,7 +6,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5rem;
+  padding: 3rem;
   box-sizing: border-box;
 }
 
@@ -15,6 +15,7 @@
   width: 100%;
   max-width: 1400px;
   display: flex;
+ margin-top: 45px;
   flex-wrap: wrap; /* ✅ Allows stacking on smaller screens */
   background-color: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -97,7 +98,7 @@
 /* Right column: Contact Info */
 .contact-right {
   flex: 1;
-  padding: 3rem;
+  padding: 5rem;
   color: black;
   display: flex;
   flex-direction: column;
