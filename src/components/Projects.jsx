@@ -12,20 +12,20 @@ export default function Projects() {
     {
       title: 'Smart City Portal',
       description: 'A React-based gamified Complaint portal.',
-      image: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
+      image: '/src/assets/Screenshot 2025-03-30 221033.png',
       link: 'https://smartcityportal-production.up.railway.app/'
     },
   
     {
-      title: '',
+      title: 'coming...',
       description: '.',
       image: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
       link: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
     },
     {
-      title: '',
+      title: 'coming...',
       description: '.',
-      image: '/src/assets/Screenshot 2025-03-30 221033.png',
+      image: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png' ,
       link: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
     }
   ];
