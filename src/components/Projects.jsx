@@ -25,7 +25,7 @@ export default function Projects() {
     {
       title: '',
       description: '.',
-      image: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
+      image: '/src/assets/Screenshot 2025-03-30 221033.png',
       link: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
     }
   ];
