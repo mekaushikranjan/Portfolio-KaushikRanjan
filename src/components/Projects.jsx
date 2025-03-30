@@ -13,7 +13,7 @@ export default function Projects() {
       title: 'Smart City Portal',
       description: 'A React-based gamified Complaint portal.',
       image: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
-      link: '#'
+      link: 'https://smartcityportal-production.up.railway.app/'
     },
   
     {
