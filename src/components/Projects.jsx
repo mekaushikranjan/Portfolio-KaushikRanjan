@@ -11,16 +11,16 @@ export default function Projects() {
     },
     {
       title: 'Smart City Portal',
-      description: 'A React-based gamified Complaint portal.',
+      description: 'A MERN-based  Complaint portal.',
       image: '/src/assets/Screenshot 2025-03-30 221033.png',
       link: 'https://smartcityportal-production.up.railway.app/'
     },
   
     {
-      title: 'coming...',
-      description: '.',
-      image: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
-      link: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
+      title: 'ChatBot',
+      description: 'HTML,CSS,JS,NODEJS,ExpressJS based ChatBot',
+      image: '',
+      link: 'https://chatbot-ac5n.onrender.com/'
     },
     {
       title: 'coming...',
