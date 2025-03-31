@@ -19,7 +19,7 @@ export default function Projects() {
     {
       title: 'ChatBot',
       description: 'HTML,CSS,JS,NODEJS,ExpressJS based ChatBot',
-      image: '',
+      image: '/src/assets/chatbot.png',
       link: 'https://chatbot-ac5n.onrender.com/'
     },
     {
