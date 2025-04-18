@@ -31,7 +31,7 @@ export default function Contact() {
     setSubmitStatus(null)
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/send-email`, {
+      const response = await fetch(`https://portfoliobackend-qd92.onrender.com/send-email`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
