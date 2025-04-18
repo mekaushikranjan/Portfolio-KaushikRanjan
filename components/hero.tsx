@@ -106,7 +106,6 @@ export default function Hero() {
               </Button>
               <Button variant="outline" size="lg" onClick={handleDownloadCV} className="gap-2 rounded-full">
                 <span>
-                <FileDown size={18} />
                 Download CV</span>
                 <Download className="h-4 w-4" />
               </Button>
