@@ -104,18 +104,13 @@ export default function Hero() {
                 <span>Contact Me</span>
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
-              <Button variant="outline" size="lg" className="gap-2 rounded-full">
-                <span>Download CV</span>
+              <Button variant="outline" size="lg" onClick={handleDownloadCV} className="gap-2 rounded-full">
+                <span>
+                <FileDown size={18} />
+                Download CV</span>
                 <Download className="h-4 w-4" />
               </Button>
-              <Button 
-                onClick={handleDownloadCV}
-                className="flex items-center gap-2"
-                variant="default"
-              >
-                <FileDown size={18} />
-                Download CV
-              </Button>
+
             </motion.div>
 
             <motion.div
