@@ -35,7 +35,7 @@ export default function Projects() {
     {
       title: "Royal Drive",
       description: "A premium car rental platform featuring luxury vehicles with booking system, virtual tours, and concierge services.",
-      image: "/logo1.png?height=400&width=600",
+      image: "/logo4.png?height=400&width=600",
       tags: ["Next.js", "Tailwind CSS", "SCDN", "TypeScript"],
       category: "frontend/backend",
       demoLink: "https://rental-cars-swart.vercel.app/",
