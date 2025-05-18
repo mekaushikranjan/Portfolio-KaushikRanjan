@@ -1,9 +1,9 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { ExternalLink, Github, ArrowRight } from "lucide-react"
+import { ExternalLink, Github } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
@@ -15,20 +15,20 @@ export default function Projects() {
 
   const projects = [
     {
-        title: "Portfolio Website",
-        description: "A responsive portfolio website showcasing projects and skills with dark/light mode support.",
-        image: "/portfoliowebsite.png?height=400&width=600",
-        tags: ["Next.js", "Tailwind CSS", "Framer Motion"],
-        category: "frontend/Backend",
-        demoLink: "#",
-        repoLink: "#",
-      },
+      title: "Portfolio Website",
+      description: "A responsive portfolio website showcasing projects and skills with dark/light mode support.",
+      image: "/portfoliowebsite.png?height=400&width=600",
+      tags: ["Next.js", "Tailwind CSS", "Framer Motion"],
+      category: "frontend/Backend",
+      demoLink: "https://portfolio-kaushik-ranjan.vercel.app/",
+      repoLink: "#",
+    },
     {
       title: "Skyline Estates",
       description: "A luxury real estate platform showcasing premium properties with virtual tours, property management, and investment advisory services.",
       image: "/logo3.png?height=400&width=600",
       tags: ["Next.js", "Tailwind CSS", "SCDN", "TypeScript"],
-      category: "frontend/backend",
+      category: "frontend",
       demoLink: "https://skyline-estate.vercel.app/",
       repoLink: "#",
     },
@@ -37,7 +37,7 @@ export default function Projects() {
       description: "A premium car rental platform featuring luxury vehicles with booking system, virtual tours, and concierge services.",
       image: "/logo4.png?height=400&width=600",
       tags: ["Next.js", "Tailwind CSS", "SCDN", "TypeScript"],
-      category: "frontend/backend",
+      category: "frontend",
       demoLink: "https://rental-cars-swart.vercel.app/",
       repoLink: "#",
     },
@@ -46,19 +46,16 @@ export default function Projects() {
       description: "A comprehensive real estate platform for Dubai's luxury property market with property listings, market insights, and investment opportunities.",
       image: "/logo2.png?height=400&width=600",
       tags: ["Next.js", "Tailwind CSS", "SCDN", "TypeScript"],
-      category: "frontend/backend",
+      category: "frontend",
       demoLink: "https://real-state-av29.vercel.app/",
       repoLink: "#",
     },
-   
- 
     {
       title: "Smart City Portal",
-      description:
-        "A React-based Complaint portal. Users can report issues, track progress.",
+      description: "A React-based Complaint portal. Users can report issues, track progress.",
       image: "/logo.png?height=400&width=600",
       tags: ["React", "TypeScript", "Tailwind CSS", "Node.js", "Express", "MongoDB"],
-      category: "frontend/backend",
+      category: "frontend",
       demoLink: "https://smartcityportal-production.up.railway.app/",
       repoLink: "#",
     },
@@ -81,7 +78,7 @@ export default function Projects() {
       repoLink: "#",
     },
     {
-      title: "Real-time Chat Application",
+      title: "Real-time Chat Application  (Coming Soon)",
       description: "A real-time messaging platform with private chats, group conversations, and media sharing.",
       image: "/placeholder.svg?height=400&width=600",
       tags: ["React", "Socket.io", "Node.js", "MongoDB"],
@@ -89,18 +86,13 @@ export default function Projects() {
       demoLink: "#",
       repoLink: "#",
     },
-    // {
-    //   title: "Data Visualization Dashboard",
-    //   description: "An interactive dashboard for visualizing complex datasets with customizable charts and filters.",
-    //   image: "/placeholder.svg?height=400&width=600",
-    //   tags: ["React", "D3.js", "TypeScript", "REST API"],
-    //   category: "frontend",
-    //   demoLink: "#",
-    //   repoLink: "#",
-    // },
   ]
 
   const filteredProjects = filter === "all" ? projects : projects.filter((project) => project.category === filter)
+  
+  // Split filtered projects for two rows
+  const firstRowProjects = [...filteredProjects, ...filteredProjects]
+  const secondRowProjects = [...filteredProjects, ...filteredProjects]
 
   const categories = [
     { value: "all", label: "All Projects" },
@@ -110,9 +102,9 @@ export default function Projects() {
   ]
 
   return (
-    <div className="container mx-auto px-2 md:px-2 lg:px-4 max-w-9xl space-y-6">
+    <div className="container mx-auto px-1 md:px-1 lg:px-2 max-w-9xl space-y-4">
       <ScrollReveal>
-        <div className="space-y-4 text-center">
+        <div className="space-y-3 text-center">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Projects</h2>
           <div className="mx-auto h-1 w-20 rounded-full bg-primary"></div>
           <p className="mx-auto max-w-[700px] text-muted-foreground">Some of my recent work and personal projects</p>
@@ -135,10 +127,20 @@ export default function Projects() {
         </div>
       </ScrollReveal>
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {filteredProjects.map((project, index) => (
-          <ScrollReveal key={project.title} delay={0.1 * (index % 3)}>
-            <Card className="overflow-hidden transition-all duration-300 group hover:shadow-lg border-2 border-border dark:border-border/80 hover:border-primary/50">
+      {/* First row of continuously moving cards */}
+      <div className="overflow-hidden">
+        <motion.div
+          className="flex gap-4"
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{
+            x: { repeat: Infinity, duration: 30, ease: "linear" },
+          }}
+        >
+          {firstRowProjects.map((project, index) => (
+            <Card 
+              key={`${project.title}-${index}`} 
+              className="min-w-[320px] max-w-[320px] overflow-hidden transition-all duration-300 group hover:shadow-lg border-2 border-border dark:border-border/80 hover:border-primary/50"
+            >
               <div className="overflow-hidden rounded-lg border shadow-md transition-all duration-300 group-hover:shadow-xl">
                 <div className="aspect-video w-full overflow-hidden">
                   <Image
@@ -149,52 +151,105 @@ export default function Projects() {
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                 </div>
-                <CardContent className="space-y-4 p-6">
+                <CardContent className="space-y-3 p-4">
                   <div>
                     <div className="flex items-center justify-between">
-                      <h3 className="text-xl font-bold">{project.title}</h3>
+                      <h3 className="text-lg font-bold">{project.title}</h3>
                       <Badge variant="outline" className="capitalize">
                         {project.category}
                       </Badge>
                     </div>
-                    <p className="mt-2 text-sm text-muted-foreground">{project.description}</p>
+                    <p className="mt-1 text-xs text-muted-foreground">{project.description}</p>
                   </div>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1">
                     {project.tags.map((tag, tagIndex) => (
-                      <span key={tagIndex} className="rounded-full bg-secondary px-2.5 py-0.5 text-xs font-medium">
+                      <span key={tagIndex} className="rounded-full bg-secondary px-2 py-0.5 text-xs font-medium">
                         {tag}
                       </span>
                     ))}
                   </div>
                 </CardContent>
-                <CardFooter className="flex gap-3 p-6 pt-0">
-                  <Button asChild variant="outline" size="sm" className="gap-1.5 rounded-full">
+                <CardFooter className="flex gap-2 p-4 pt-0">
+                  <Button asChild variant="outline" size="sm" className="gap-1 rounded-full">
                     <Link href={project.demoLink} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="h-3.5 w-3.5" />
+                      <ExternalLink className="h-3 w-3" />
                       <span>Demo</span>
                     </Link>
                   </Button>
-                  <Button asChild variant="outline" size="sm" className="gap-1.5 rounded-full">
+                  <Button asChild variant="outline" size="sm" className="gap-1 rounded-full">
                     <Link href={project.repoLink} target="_blank" rel="noopener noreferrer">
-                      <Github className="h-3.5 w-3.5" />
+                      <Github className="h-3 w-3" />
                       <span>Code</span>
                     </Link>
                   </Button>
                 </CardFooter>
               </div>
             </Card>
-          </ScrollReveal>
-        ))}
+          ))}
+        </motion.div>
       </div>
 
-      <ScrollReveal>
-        <div className="flex justify-center">
-          <Button variant="outline" className="group gap-2 rounded-full">
-            <span>View All Projects</span>
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </Button>
-        </div>
-      </ScrollReveal>
+      {/* Second row of continuously moving cards in opposite direction */}
+      <div className="overflow-hidden">
+        <motion.div
+          className="flex gap-4"
+          animate={{ x: ["-50%", "0%"] }}
+          transition={{
+            x: { repeat: Infinity, duration: 30, ease: "linear" },
+          }}
+        >
+          {secondRowProjects.map((project, index) => (
+            <Card 
+              key={`${project.title}-row2-${index}`} 
+              className="min-w-[320px] max-w-[320px] overflow-hidden transition-all duration-300 group hover:shadow-lg border-2 border-border dark:border-border/80 hover:border-primary/50"
+            >
+              <div className="overflow-hidden rounded-lg border shadow-md transition-all duration-300 group-hover:shadow-xl">
+                <div className="aspect-video w-full overflow-hidden">
+                  <Image
+                    src={project.image || "/placeholder.svg"}
+                    alt={project.title}
+                    width={600}
+                    height={400}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                </div>
+                <CardContent className="space-y-3 p-4">
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <h3 className="text-lg font-bold">{project.title}</h3>
+                      <Badge variant="outline" className="capitalize">
+                        {project.category}
+                      </Badge>
+                    </div>
+                    <p className="mt-1 text-xs text-muted-foreground">{project.description}</p>
+                  </div>
+                  <div className="flex flex-wrap gap-1">
+                    {project.tags.map((tag, tagIndex) => (
+                      <span key={tagIndex} className="rounded-full bg-secondary px-2 py-0.5 text-xs font-medium">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </CardContent>
+                <CardFooter className="flex gap-2 p-4 pt-0">
+                  <Button asChild variant="outline" size="sm" className="gap-1 rounded-full">
+                    <Link href={project.demoLink} target="_blank" rel="noopener noreferrer">
+                      <ExternalLink className="h-3 w-3" />
+                      <span>Demo</span>
+                    </Link>
+                  </Button>
+                  <Button asChild variant="outline" size="sm" className="gap-1 rounded-full">
+                    <Link href={project.repoLink} target="_blank" rel="noopener noreferrer">
+                      <Github className="h-3 w-3" />
+                      <span>Code</span>
+                    </Link>
+                  </Button>
+                </CardFooter>
+              </div>
+            </Card>
+          ))}
+        </motion.div>
+      </div>
     </div>
   )
 }
