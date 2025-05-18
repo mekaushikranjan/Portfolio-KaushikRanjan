@@ -78,7 +78,7 @@ export default function Projects() {
       repoLink: "#",
     },
     {
-      title: "Real-time Chat Application  (Coming Soon)",
+      title: "Real-time Chat Application (Coming Soon)",
       description: "A real-time messaging platform with private chats, group conversations, and media sharing.",
       image: "/placeholder.svg?height=400&width=600",
       tags: ["React", "Socket.io", "Node.js", "MongoDB"],
@@ -90,10 +90,9 @@ export default function Projects() {
 
   const filteredProjects = filter === "all" ? projects : projects.filter((project) => project.category === filter)
   
-  // Split filtered projects for two rows
-  const firstRowProjects = [...filteredProjects, ...filteredProjects]
-  const secondRowProjects = [...filteredProjects, ...filteredProjects]
-
+  // Duplicate projects for continuous scrolling
+  const scrollingProjects = [...filteredProjects, ...filteredProjects]
+  
   const categories = [
     { value: "all", label: "All Projects" },
     { value: "frontend", label: "Frontend" },
@@ -127,128 +126,130 @@ export default function Projects() {
         </div>
       </ScrollReveal>
 
-      {/* First row of continuously moving cards */}
-      <div className="overflow-hidden">
-        <motion.div
-          className="flex gap-4"
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{
-            x: { repeat: Infinity, duration: 30, ease: "linear" },
-          }}
-        >
-          {firstRowProjects.map((project, index) => (
-            <Card 
-              key={`${project.title}-${index}`} 
-              className="min-w-[320px] max-w-[320px] overflow-hidden transition-all duration-300 group hover:shadow-lg border-2 border-border dark:border-border/80 hover:border-primary/50"
-            >
-              <div className="overflow-hidden rounded-lg border shadow-md transition-all duration-300 group-hover:shadow-xl">
-                <div className="aspect-video w-full overflow-hidden">
-                  <Image
-                    src={project.image || "/placeholder.svg"}
-                    alt={project.title}
-                    width={600}
-                    height={400}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                </div>
-                <CardContent className="space-y-3 p-4">
-                  <div>
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-lg font-bold">{project.title}</h3>
-                      <Badge variant="outline" className="capitalize">
-                        {project.category}
-                      </Badge>
+      <div className="space-y-6">
+        {/* First row - moving left to right */}
+        <div className="overflow-hidden">
+          <motion.div
+            className="flex gap-4"
+            animate={{ x: ["-50%", "0%"] }}
+            transition={{
+              x: { repeat: Infinity, duration: 25, ease: "linear" },
+            }}
+          >
+            {scrollingProjects.map((project, index) => (
+              <Card 
+                key={`row1-${project.title}-${index}`} 
+                className="min-w-[300px] max-w-[300px] overflow-hidden transition-all duration-300 group hover:shadow-lg border-2 border-border dark:border-border/80 hover:border-primary/50"
+              >
+                <div className="overflow-hidden rounded-lg border shadow-md transition-all duration-300 group-hover:shadow-xl">
+                  <div className="aspect-video w-full overflow-hidden">
+                    <Image
+                      src={project.image || "/placeholder.svg"}
+                      alt={project.title}
+                      width={600}
+                      height={400}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                  </div>
+                  <CardContent className="space-y-3 p-4">
+                    <div>
+                      <div className="flex items-center justify-between">
+                        <h3 className="text-lg font-bold">{project.title}</h3>
+                        <Badge variant="outline" className="capitalize">
+                          {project.category}
+                        </Badge>
+                      </div>
+                      <p className="mt-1 text-xs text-muted-foreground line-clamp-2">{project.description}</p>
                     </div>
-                    <p className="mt-1 text-xs text-muted-foreground">{project.description}</p>
-                  </div>
-                  <div className="flex flex-wrap gap-1">
-                    {project.tags.map((tag, tagIndex) => (
-                      <span key={tagIndex} className="rounded-full bg-secondary px-2 py-0.5 text-xs font-medium">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </CardContent>
-                <CardFooter className="flex gap-2 p-4 pt-0">
-                  <Button asChild variant="outline" size="sm" className="gap-1 rounded-full">
-                    <Link href={project.demoLink} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="h-3 w-3" />
-                      <span>Demo</span>
-                    </Link>
-                  </Button>
-                  <Button asChild variant="outline" size="sm" className="gap-1 rounded-full">
-                    <Link href={project.repoLink} target="_blank" rel="noopener noreferrer">
-                      <Github className="h-3 w-3" />
-                      <span>Code</span>
-                    </Link>
-                  </Button>
-                </CardFooter>
-              </div>
-            </Card>
-          ))}
-        </motion.div>
-      </div>
+                    <div className="flex flex-wrap gap-1">
+                      {project.tags.slice(0, 3).map((tag, tagIndex) => (
+                        <span key={tagIndex} className="rounded-full bg-secondary px-2 py-0.5 text-xs font-medium">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </CardContent>
+                  <CardFooter className="flex gap-2 p-4 pt-0">
+                    <Button asChild variant="outline" size="sm" className="gap-1 rounded-full">
+                      <Link href={project.demoLink} target="_blank" rel="noopener noreferrer">
+                        <ExternalLink className="h-3 w-3" />
+                        <span>Demo</span>
+                      </Link>
+                    </Button>
+                    <Button asChild variant="outline" size="sm" className="gap-1 rounded-full">
+                      <Link href={project.repoLink} target="_blank" rel="noopener noreferrer">
+                        <Github className="h-3 w-3" />
+                        <span>Code</span>
+                      </Link>
+                    </Button>
+                  </CardFooter>
+                </div>
+              </Card>
+            ))}
+          </motion.div>
+        </div>
 
-      {/* Second row of continuously moving cards in opposite direction */}
-      <div className="overflow-hidden">
-        <motion.div
-          className="flex gap-4"
-          animate={{ x: ["-50%", "0%"] }}
-          transition={{
-            x: { repeat: Infinity, duration: 30, ease: "linear" },
-          }}
-        >
-          {secondRowProjects.map((project, index) => (
-            <Card 
-              key={`${project.title}-row2-${index}`} 
-              className="min-w-[320px] max-w-[320px] overflow-hidden transition-all duration-300 group hover:shadow-lg border-2 border-border dark:border-border/80 hover:border-primary/50"
-            >
-              <div className="overflow-hidden rounded-lg border shadow-md transition-all duration-300 group-hover:shadow-xl">
-                <div className="aspect-video w-full overflow-hidden">
-                  <Image
-                    src={project.image || "/placeholder.svg"}
-                    alt={project.title}
-                    width={600}
-                    height={400}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                </div>
-                <CardContent className="space-y-3 p-4">
-                  <div>
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-lg font-bold">{project.title}</h3>
-                      <Badge variant="outline" className="capitalize">
-                        {project.category}
-                      </Badge>
+        {/* Second row - moving right to left */}
+        <div className="overflow-hidden">
+          <motion.div
+            className="flex gap-4"
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{
+              x: { repeat: Infinity, duration: 25, ease: "linear" },
+            }}
+          >
+            {scrollingProjects.map((project, index) => (
+              <Card 
+                key={`row2-${project.title}-${index}`} 
+                className="min-w-[300px] max-w-[300px] overflow-hidden transition-all duration-300 group hover:shadow-lg border-2 border-border dark:border-border/80 hover:border-primary/50"
+              >
+                <div className="overflow-hidden rounded-lg border shadow-md transition-all duration-300 group-hover:shadow-xl">
+                  <div className="aspect-video w-full overflow-hidden">
+                    <Image
+                      src={project.image || "/placeholder.svg"}
+                      alt={project.title}
+                      width={600}
+                      height={400}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                  </div>
+                  <CardContent className="space-y-3 p-4">
+                    <div>
+                      <div className="flex items-center justify-between">
+                        <h3 className="text-lg font-bold">{project.title}</h3>
+                        <Badge variant="outline" className="capitalize">
+                          {project.category}
+                        </Badge>
+                      </div>
+                      <p className="mt-1 text-xs text-muted-foreground line-clamp-2">{project.description}</p>
                     </div>
-                    <p className="mt-1 text-xs text-muted-foreground">{project.description}</p>
-                  </div>
-                  <div className="flex flex-wrap gap-1">
-                    {project.tags.map((tag, tagIndex) => (
-                      <span key={tagIndex} className="rounded-full bg-secondary px-2 py-0.5 text-xs font-medium">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </CardContent>
-                <CardFooter className="flex gap-2 p-4 pt-0">
-                  <Button asChild variant="outline" size="sm" className="gap-1 rounded-full">
-                    <Link href={project.demoLink} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="h-3 w-3" />
-                      <span>Demo</span>
-                    </Link>
-                  </Button>
-                  <Button asChild variant="outline" size="sm" className="gap-1 rounded-full">
-                    <Link href={project.repoLink} target="_blank" rel="noopener noreferrer">
-                      <Github className="h-3 w-3" />
-                      <span>Code</span>
-                    </Link>
-                  </Button>
-                </CardFooter>
-              </div>
-            </Card>
-          ))}
-        </motion.div>
+                    <div className="flex flex-wrap gap-1">
+                      {project.tags.slice(0, 3).map((tag, tagIndex) => (
+                        <span key={tagIndex} className="rounded-full bg-secondary px-2 py-0.5 text-xs font-medium">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </CardContent>
+                  <CardFooter className="flex gap-2 p-4 pt-0">
+                    <Button asChild variant="outline" size="sm" className="gap-1 rounded-full">
+                      <Link href={project.demoLink} target="_blank" rel="noopener noreferrer">
+                        <ExternalLink className="h-3 w-3" />
+                        <span>Demo</span>
+                      </Link>
+                    </Button>
+                    <Button asChild variant="outline" size="sm" className="gap-1 rounded-full">
+                      <Link href={project.repoLink} target="_blank" rel="noopener noreferrer">
+                        <Github className="h-3 w-3" />
+                        <span>Code</span>
+                      </Link>
+                    </Button>
+                  </CardFooter>
+                </div>
+              </Card>
+            ))}
+          </motion.div>
+        </div>
       </div>
     </div>
   )
